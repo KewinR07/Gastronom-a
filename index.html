@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Descubre la gastronomía peruana: platos típicos, ingredientes, regiones y cultura.">
+    <title>Perú Gastronomía</title>
+    <link rel="stylesheet" href="css/estilos.css">
+    <style>
+/* ===== PARCHE DE ACCESIBILIDAD: pegar AL FINAL de css/estilos.css ===== */
+
+/* Foco visible para navegar con teclado */
+a:focus-visible, button:focus-visible, input:focus-visible,
+textarea:focus-visible, audio:focus-visible{
+    outline:3px solid #ffbf00;
+    outline-offset:2px;
+}
+
+/* Texto solo para lectores de pantalla */
+.solo-lector{
+    position:absolute;
+    width:1px;
+    height:1px;
+    overflow:hidden;
+    clip:rect(0 0 0 0);
+    white-space:nowrap;
+}
+
+/* Botón de pausa del carrusel */
+.btn-pausa{
+    margin-top:15px;
+    padding:10px 20px;
+    background:#c1121f;
+    color:white;
+    border:none;
+    border-radius:8px;
+    font-weight:bold;
+    font-size:16px;
+    cursor:pointer;
+}
+.btn-pausa:hover{ background:#8b0000; }
+
+/* Formulario con labels */
+.contacto label{
+    text-align:left;
+    font-weight:bold;
+}
+#estadoForm{
+    margin:0;
+    font-weight:bold;
+    color:#1b5e20;
+}
+
+/* Título del reproductor (reemplaza al antiguo h4) */
+.musica-titulo{
+    margin:0 0 10px 0;
+    color:#c1121f;          /* contraste 5,37:1 sobre el fondo del aside */
+    text-align:center;
+    font-weight:bold;
+}
+
+/* Idioma activo */
+.idioma button[aria-pressed="true"]{
+    background:#ffbf00;
+    color:#000;
+}
+
+/* Quiz: colores con contraste suficiente (texto blanco ≥ 4,5:1) */
+.correcta{   background:#2e7d32; color:white; }
+.incorrecta{ background:#c62828; color:white; }
+.opcion{ background:#f0f0f0; color:#222; }
+.opcion.correcta{   background:#2e7d32; color:white; }
+.opcion.incorrecta{ background:#c62828; color:white; }
+#resultadoQuiz.ok{  color:#1b5e20; }
+#resultadoQuiz.mal{ color:#b71c1c; }
+#siguientePregunta, #reiniciarQuiz{
+    background:#c1121f;
+    color:white;
+    font-weight:bold;
+}
+#puntajeFinal{
+    margin-top:25px;
+    color:#c1121f;
+    font-size:1.17em;
+    font-weight:bold;
+}
+
+/* ===== MENÚ HAMBURGUESA: solo en celular (768 px o menos) ===== */
+.btn-menu{ display:none; }   /* en PC no se ve */
+
+@media (max-width:768px){
+    .btn-menu{
+        display:inline-block;
+        margin-top:12px;
+        min-height:44px;
+        padding:10px 20px;
+        background:#fff;
+        color:#c1121f;
+        border:none;
+        border-radius:8px;
+        font-size:16px;
+        font-weight:bold;
+        cursor:pointer;
+    }
+    nav ul{ display:none; }
+    nav ul.abierto{ display:grid; grid-template-columns:1fr; gap:8px; }
+}
+
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1 id="tituloPrincipal">Perú Gastronomía</h1>
+
+    <button type="button" id="btnMenu" class="btn-menu" aria-expanded="false" aria-controls="menuPrincipal">☰ Menú</button>
+
+    <nav aria-label="Menú principal">
+        <ul id="menuPrincipal">
+            <li><a id="menuInicio" href="#inicio">Inicio</a></li>
+            <li><a id="menuGastro" href="#gastronomia">Gastronomía Peruana</a></li>
+            <li><a id="menuPlatos" href="#platos">Platos Típicos</a></li>
+            <li><a id="menuIngredientes" href="#ingredientes">Ingredientes Tradicionales</a></li>
+            <li><a id="menuRegiones" href="#regiones">Regiones Gastronómicas</a></li>
+            <li><a id="menuCultura" href="#cultura">Cultura e Historia</a></li>
+            <li><a id="menuContacto" href="#contacto">Contacto</a></li>
+        </ul>
+    </nav>
+
+    <div class="idioma" role="group" aria-label="Idioma / Language">
+        <button type="button" id="btnES" aria-label="Cambiar a español" aria-pressed="true">ES</button>
+        <button type="button" id="btnEN" aria-label="Switch to English" aria-pressed="false">EN</button>
+    </div>
+</header>
+
+<main id="contenido">
+
+<section id="inicio" class="hero">
+    <img src="img/im-pe.png" alt="Mesa con platos de la gastronomía peruana" class="imagen-principal">
+    <div class="franja-peru"></div>
+    <div class="hero-texto">
+        <h2 id="heroTitulo">Descubre los sabores del Perú</h2>
+        <p id="heroTexto">Explora la riqueza culinaria de la costa, sierra y selva peruana.</p>
+    </div>
+</section>
+
+<section id="gastronomia" class="introduccion">
+    <h2 id="tituloGastronomia">La Gastronomía Peruana</h2>
+    <p id="textoGastronomia">La gastronomía peruana es reconocida mundialmente por su diversidad de sabores, ingredientes y tradiciones culinarias.</p>
+</section>
+
+<section id="platos" class="platos">
+    <h2 id="tituloPlatos">🍽️ Platos Típicos</h2>
+    <div class="contenedor-platos">
+        <div class="plato">
+            <img src="img/ceviche.jpg" alt="Plato de ceviche con pescado fresco, limón y cebolla">
+            <h3 id="plato1Titulo">Ceviche</h3>
+            <p id="plato1Texto">Plato emblemático del Perú preparado con pescado fresco, limón, cebolla y ají.</p>
+        </div>
+        <div class="plato">
+            <img src="img/im-Lomo saltado.jpg" alt="Lomo saltado con carne, cebolla, tomate y papas fritas">
+            <h3 id="plato2Titulo">Lomo Saltado</h3>
+            <p id="plato2Texto">Combinación de carne, cebolla, tomate y papas fritas, influenciada por la cocina china-peruana.</p>
+        </div>
+        <div class="plato">
+            <img src="img/Aji-gallina.jpg" alt="Ají de gallina cremoso con pollo desmenuzado y arroz">
+            <h3 id="plato3Titulo">Ají de Gallina</h3>
+            <p id="plato3Texto">Cremoso plato elaborado con pollo desmenuzado, ají amarillo y pan.</p>
+        </div>
+    </div>
+</section>
+
+<section id="ingredientes" class="ingredientes">
+    <h2 id="tituloIngredientes">🌽 Ingredientes Tradicionales</h2>
+    <div class="contenedor-ingredientes">
+        <div class="ingrediente">
+            <img src="img/Ají.png" alt="Ajíes amarillos peruanos">
+            <h3 id="ing1Titulo">Ají Amarillo</h3>
+            <p id="ing1Texto">Uno de los ingredientes más representativos de la cocina peruana.</p>
+        </div>
+        <div class="ingrediente">
+            <img src="img/papa.jpg" alt="Variedades de papa peruana de distintos colores">
+            <h3 id="ing2Titulo">Papa Peruana</h3>
+            <p id="ing2Texto">Perú posee miles de variedades de papa que forman parte esencial de su gastronomía.</p>
+        </div>
+        <div class="ingrediente">
+            <img src="img/maiz.jpg" alt="Mazorcas de maíz peruano">
+            <h3 id="ing3Titulo">Maíz</h3>
+            <p id="ing3Texto">Presente en diversas preparaciones y bebidas típicas de las regiones peruanas.</p>
+        </div>
+        <div class="ingrediente">
+            <img src="img/Quinua.avif" alt="Granos de quinua">
+            <h3 id="ing4Titulo">Quinua</h3>
+            <p id="ing4Texto">Considerado un superalimento andino por su alto valor nutricional.</p>
+        </div>
+    </div>
+</section>
+
+<section id="regiones" class="regiones">
+    <h2 id="tituloRegiones">🗺️ Regiones Gastronómicas</h2>
+    <div class="contenedor-regiones">
+        <div class="region">
+            <img src="img/Im-Cos.jpg" alt="Costa peruana frente al océano Pacífico">
+            <h3 id="region1Titulo">Costa</h3>
+            <p id="region1Texto">La costa peruana destaca por sus platos marinos, especialmente el ceviche, la causa limeña y los tiraditos.</p>
+        </div>
+        <div class="region">
+            <img src="img/im-Sierra.jpg" alt="Paisaje de la sierra andina del Perú">
+            <h3 id="region2Titulo">Sierra</h3>
+            <p id="region2Texto">La gastronomía andina incluye platos tradicionales como la pachamanca, el cuy chactado y preparaciones con papa y quinua.</p>
+        </div>
+        <div class="region">
+            <img src="img/selva.jpg" alt="Selva amazónica del Perú">
+            <h3 id="region3Titulo">Selva</h3>
+            <p id="region3Texto">La cocina amazónica se caracteriza por ingredientes naturales como el plátano, la yuca y el pescado de río.</p>
+        </div>
+    </div>
+</section>
+
+<section id="cultura" class="cultura">
+    <h2 id="tituloCultura">📜 Cultura e Historia</h2>
+    <figure>
+        <img src="img/machu-picchu-llama.jpg" alt="Llama frente a la ciudadela de Machu Picchu" class="imagen-cultura">
+        <p id="textoMachuPicchu">Machu Picchu representa el legado histórico y cultural del Perú. Las antiguas civilizaciones andinas desarrollaron técnicas agrícolas que permitieron cultivar ingredientes como la papa, el maíz y la quinua, fundamentales en la gastronomía peruana actual.</p>
+    </figure>
+</section>
+
+<section id="simbolos" class="simbolos">
+    <h2 id="tituloSimbolos">🏛️ Cultura y Símbolos del Perú</h2>
+    <figure>
+        <img src="img/condor Andino.jpg" alt="Cóndor andino con las alas extendidas">
+    </figure>
+    <p id="textoCondor">El cóndor andino es uno de los símbolos más importantes del Perú y representa la conexión entre la naturaleza y las culturas andinas. Su imagen forma parte de las tradiciones que enriquecen la identidad cultural del país y complementan el valor de su patrimonio gastronómico.</p>
+</section>
+
+<section id="galeria" class="galeria">
+    <h2 id="tituloGaleria">📷 Galería Gastronómica</h2>
+
+    <div class="carrusel" role="region" aria-roledescription="carrusel" aria-label="Galería gastronómica">
+        <button type="button" id="anterior" aria-label="Imagen anterior">❮</button>
+        <img id="imagenCarrusel" src="img/ceviche.jpg" alt="Plato de ceviche con pescado fresco, limón y cebolla">
+        <button type="button" id="siguiente" aria-label="Imagen siguiente">❯</button>
+    </div>
+
+    <button type="button" id="pausaCarrusel" class="btn-pausa" aria-label="Pausar carrusel automático">⏸ Pausar</button>
+    <p id="estadoCarrusel" class="solo-lector" aria-live="polite"></p>
+</section>
+
+<section id="quiz" class="quiz">
+    <h2 id="tituloQuiz">🏆 Desafío Gastronómico Peruano</h2>
+
+    <div class="quiz-card" lang="es">
+        <h3 id="pregunta"></h3>
+        <div id="opciones"></div>
+        <p id="resultadoQuiz" role="status" aria-live="polite"></p>
+        <button type="button" id="siguientePregunta" style="display:none;">Siguiente Pregunta</button>
+        <p id="puntajeFinal" role="status"></p>
+        <button type="button" id="reiniciarQuiz" style="display:none;">🔄 Intentar de nuevo</button>
+    </div>
+</section>
+
+<section id="contacto" class="contacto">
+    <h2 id="tituloContacto">📩 Contacto</h2>
+
+    <form id="formContacto">
+        <label id="lblNombre" for="nombre">Nombre completo</label>
+        <input type="text" id="nombre" name="nombre" autocomplete="name" required>
+
+        <label id="lblCorreo" for="correo">Correo electrónico</label>
+        <input type="email" id="correo" name="correo" autocomplete="email" required>
+
+        <label id="lblMensaje" for="mensaje">Mensaje</label>
+        <textarea id="mensaje" name="mensaje" rows="5" required></textarea>
+
+        <button type="submit" id="btnEnviar">Enviar</button>
+        <p id="estadoForm" role="status" aria-live="polite"></p>
+    </form>
+</section>
+
+</main>
+
+<aside class="musica-lateral" aria-label="Reproductor de música andina">
+    <p class="musica-titulo" id="textoMusica">🎵 Música Andina</p>
+    <audio controls loop aria-label="Música andina">
+        <source src="musicaandina/musica.mp3" type="audio/mpeg">
+        Tu navegador no admite el elemento de audio.
+    </audio>
+</aside>
+
+<a href="#inicio" class="volver-arriba" id="btnArriba" aria-label="Volver al inicio de la página">↑</a>
+
+<footer>
+    <p>© 2026 Perú Gastronomía | Proyecto Multimedia Kewin Restrepo</p>
+    <p>Descubriendo la riqueza culinaria del Perú</p>
+</footer>
+
+<script src="js/app.js"></script>
+</body>
+</html>
